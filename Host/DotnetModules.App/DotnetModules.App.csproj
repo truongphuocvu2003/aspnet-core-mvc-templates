@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\DotnetModules.ModuleA\DotnetModules.ModuleA.csproj" />
+    <ProjectReference Include="..\..\Modules\DotnetModules.ModuleB\DotnetModules.ModuleB.csproj" />
+    <ProjectReference Include="..\..\Modules\DotnetModules.ModuleC\DotnetModules.ModuleC.csproj" />
+    <ProjectReference Include="..\..\Shared\DotnetModules.Shared.Core\DotnetModules.Shared.Core.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,133 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Vu Truong",
+    "classifications": [
+        "Common",
+        "Console",
+        "Benchmark"
+    ],
+    "identity": "DotnetModules",
+    "name": "Console App With Dynamic Modules",
+    "shortName": "console-dmod",
+    "tags": {
+        "language": "C#",
+        "type": "solution"
+    },
+    "preferNameDirectory": true,
+    "sourceName": "DotnetModules",
+    "symbols": {
+        "enableModuleA": {
+            "type": "parameter",
+            "datatype": "bool",
+            "defaultValue": "true"
+        },
+        "enableModuleB": {
+            "type": "parameter",
+            "datatype": "bool",
+            "defaultValue": "true"
+        },
+        "enableModuleC": {
+            "type": "parameter",
+            "datatype": "bool",
+            "defaultValue": "true"
+        },
+        "enableDependentAC": {
+            "type": "computed",
+            "datatype": "bool",
+            "value": "(enableModuleA == \"true\" || enableModuleC == \"true\")"
+        },
+        "skipRestore": {
+            "type": "parameter",
+            "datatype": "bool",
+            "description": "If specified, skips the automatic restore of the project on create.",
+            "defaultValue": "false"
+        },
+        "adminUserName": {
+            "type": "parameter",
+            "defaultValue": "admin",
+            "datatype": "text",
+            "replaces": "admin",
+            "onlyIf": [
+                {
+                    "after": "UserName = \""
+                }
+            ]
+        },
+        "adminPassFirst": {
+            "type": "generated",
+            "generator": "random",
+            "parameters": {
+                "low": 101,
+                "high": 9999
+            },
+            "replaces": "Password",
+            "onlyIf": [
+                {
+                    "after": "adminPassFirst = \""
+                }
+            ]
+        },
+        "adminPassSecond": {
+            "type": "generated",
+            "generator": "random",
+            "parameters": {
+                "low": 101,
+                "high": 9999
+            },
+            "replaces": "123",
+            "onlyIf": [
+                {
+                    "after": "adminPassSecond = \""
+                }
+            ]
+        }
+    },
+    "primaryOutputs": [
+        {
+            "path": "Host/DotnetModules.App/DotnetModules.App.csproj"
+        }
+    ],
+    "postActions": [
+        {
+            "condition": "(!skipRestore)",
+            "description": "Restore NuGet packages required by this project.",
+            "manualInstructions": [
+                {
+                    "text": "Run 'dotnet restore'"
+                }
+            ],
+            "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+            "continueOnError": true
+        }
+    ],
+    "sources": [
+        {
+            "modifiers": [
+                {
+                    "condition": "(!enableModuleA)",
+                    "exclude": [
+                        "Modules/DotnetModules.ModuleA/**/*"
+                    ]
+                },
+                {
+                    "condition": "(!enableModuleB)",
+                    "exclude": [
+                        "Modules/DotnetModules.ModuleB/**/*"
+                    ]
+                },
+                {
+                    "condition": "(!enableModuleC)",
+                    "exclude": [
+                        "Modules/DotnetModules.ModuleC/**/*"
+                    ]
+                },
+                {
+                    "condition": "(!enableDependentAC)",
+                    "exclude": [
+                        "Shared/DotnetModules.Shared.DependentAC/**/*"
+                    ]
+                } 
+            ]
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "symbolInfo": {
+        "enableModuleA": {
+            "longName": "enable-A",
+            "shortName": "eA"
+        },
+        "enableModuleB": {
+            "longName": "enable-B",
+            "shortName": "eB"
+        },
+        "enableModuleC": {
+            "longName": "enable-C",
+            "shortName": "eC"
+        },
+        "skipRestore": {
+            "longName": "no-restore",
+            "shortName": "sR"
+        },
+        "adminUserName": {
+            "longName": "admin-name",
+            "shortName": "aN"
+        }
+    }
+}
