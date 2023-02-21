@@ -1,9 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+<!--#if (enableModuleA) -->
     <ProjectReference Include="..\..\Modules\DotnetModules.ModuleA\DotnetModules.ModuleA.csproj" />
+<!--#endif -->
+<!--#if (enableModuleB) -->
     <ProjectReference Include="..\..\Modules\DotnetModules.ModuleB\DotnetModules.ModuleB.csproj" />
+<!--#endif -->
+<!--#if (enableModuleC) -->
     <ProjectReference Include="..\..\Modules\DotnetModules.ModuleC\DotnetModules.ModuleC.csproj" />
+<!--#endif -->
+<!--#if (enableModuleA || enableModuleC) -->
+    <ProjectReference Include="..\..\Shared\DotnetModules.Shared.DependentAC\DotnetModules.Shared.DependentAC.csproj" />
+<!--#endif -->
     <ProjectReference Include="..\..\Shared\DotnetModules.Shared.Core\DotnetModules.Shared.Core.csproj" />
   </ItemGroup>
 
